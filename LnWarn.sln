@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnWarn.Tests", "LnWarn.Tests\LnWarn.Tests.csproj", "{9E2849E7-CEF3-4614-9B36-8427C7B8321A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnWarn", "LnWarn\LnWarn.csproj", "{976B222F-2EB2-4B8A-9127-483A106C6101}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9E2849E7-CEF3-4614-9B36-8427C7B8321A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E2849E7-CEF3-4614-9B36-8427C7B8321A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E2849E7-CEF3-4614-9B36-8427C7B8321A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E2849E7-CEF3-4614-9B36-8427C7B8321A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{976B222F-2EB2-4B8A-9127-483A106C6101}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{976B222F-2EB2-4B8A-9127-483A106C6101}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{976B222F-2EB2-4B8A-9127-483A106C6101}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{976B222F-2EB2-4B8A-9127-483A106C6101}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
