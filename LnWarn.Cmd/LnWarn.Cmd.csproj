@@ -5,6 +5,7 @@
         <PackAsTool>True</PackAsTool>
         <OutputType>Exe</OutputType>
         <TargetFramework>net7.0</TargetFramework>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
     </PropertyGroup>
 
     <ItemGroup>

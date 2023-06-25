@@ -24,8 +24,11 @@ namespace LnWarn.Cmd
         [Option(Description = "If any file has more than this maximum lines, then exit with a non zero exit code", Template = "--max|-m")]
         public int MaxLines { get; } = 5;
 
-        [Option(Description = "", ShortName = "include", Template = "--include|-i")]
+        [Option(Description = "A list of glob patterns for files to include", ShortName = "include", Template = "--include|-i")]
         public IEnumerable<string> IncludeGlobs { get; } = new[] { "**/*.cs" };
+        
+        [Option(Description = "A list of glob patterns for files to exclude", ShortName = "exclude", Template = "--exclude|-x")]
+        public IEnumerable<string> ExcludeGlobs { get; } = new[] { "**/*.AssemblyInfo.cs" };
 
         [UsedImplicitly]
         private async Task<int> OnExecute()
@@ -35,7 +38,7 @@ namespace LnWarn.Cmd
             Matcher matcher = new();
             foreach (var includeGlob in IncludeGlobs)
             {
-                matcher.AddExclude(includeGlob);
+                matcher.AddInclude(includeGlob);
             }
             
             if (MinLineLength.TryGetValue(out var result))
@@ -45,9 +48,10 @@ namespace LnWarn.Cmd
             
             string searchDirectory = ".";
 
+            var directoryInfoWrapper = new DirectoryInfoWrapper(
+                new DirectoryInfo(searchDirectory));
             PatternMatchingResult matchingFiles = matcher.Execute(
-                new DirectoryInfoWrapper(
-                    new DirectoryInfo(searchDirectory)));
+                directoryInfoWrapper);
 
             var lineCounter = new LineCounter(filters);
 
@@ -60,19 +64,32 @@ namespace LnWarn.Cmd
                 lineCountResults.Add(new LineCountResult(matchingFilesFile.Path, matchingFilesFile.Stem, lineCount));
             }
 
+            Console.WriteLine($"Analyzing directory {directoryInfoWrapper.FullName}");
+            
             var ruleBreakers = lineCountResults.Where(c => c.LineCount > MaxLines).ToList();
             if (ruleBreakers.Any())
             {
-                foreach (var (path, stem, lineCount) in ruleBreakers)
+                Console.ForegroundColor = ConsoleColor.Red;
+                await Console.Error.WriteLineAsync();
+                DrawHorizontalLine();
+                await Console.Error.WriteLineAsync($"Lines with minimum length {MinLineLength} exceeded the maximum number of allowed lines {MaxLines} in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
+                DrawHorizontalLine();
+                await Console.Error.WriteLineAsync($"{"Path",-50}{"Lines",-10}");
+                foreach (var (_, stem, lineCount) in ruleBreakers)
                 {
                     await Console.Error.WriteLineAsync($"{stem,-50}{lineCount,-10}");
                 }
+
+                DrawHorizontalLine();
+                Console.ResetColor();
 
                 return 1;
             }
             
             return 0;
         }
+
+        private void DrawHorizontalLine() => Console.Error.WriteLineAsync(new string('_', 150));
     }
 
     internal record LineCountResult(string Path, string Stem, uint LineCount)
