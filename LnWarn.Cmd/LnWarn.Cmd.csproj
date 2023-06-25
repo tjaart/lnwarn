@@ -14,6 +14,7 @@
         <PackageDescription>A tool to fail builds when source files exceed a number of lines</PackageDescription>
         <RepositoryUrl>https://github.com/tjaart/lnwarn</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageLicenseExpression>GPL-3.0</PackageLicenseExpression>
     </PropertyGroup>
 
     <ItemGroup>
