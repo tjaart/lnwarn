@@ -7,7 +7,6 @@
         <Nullable>enable</Nullable>
         <TargetFramework>net7.0</TargetFramework>
         <PackageOutputPath>./nupkg</PackageOutputPath>
-        <PackageLicenseUrl>https://github.com/tjaart/lnwarn/blob/master/LICENSE</PackageLicenseUrl>
         <PackageId>LnWarn.Cmd</PackageId>
         <Version>1.0.0</Version>
         <Authors>Tjaart Blignaut</Authors>
