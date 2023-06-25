@@ -86,7 +86,7 @@ class Program
         await Console.Error.WriteLineAsync();
         DrawHorizontalLine();
         await Console.Error.WriteLineAsync(
-            $"Count of lines with minimum length of {MinLineLength} exceeded the maximum number of allowed lines {MaxLines} per file in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
+            $"Count of lines with minimum length of {MinLineLength} exceeded the maximum number of allowed lines of {MaxLines} lines per file in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
         DrawHorizontalLine();
         await Console.Error.WriteLineAsync($"{"Path",-50}{"Lines",-10}");
         foreach (var (_, stem, lineCount) in ruleBreakers.OrderByDescending(d=>d.LineCount))
