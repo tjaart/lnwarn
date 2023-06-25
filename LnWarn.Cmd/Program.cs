@@ -42,7 +42,7 @@ class Program
             
         if (MinLineLength.TryGetValue(out var result))
         {
-            filters.Add(inputString => inputString.Length >= result);
+            filters.Add(inputString => inputString.Trim().Length >= result);
         }
             
         string searchDirectory = ".";
