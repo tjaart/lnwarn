@@ -71,7 +71,9 @@ class Program
             await WriteResult(ruleBreakers);
             return 1;
         }
-            
+
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Passed! No files exceed the maximum line count of {MaxLines}");
         return 0;
     }
 
