@@ -72,7 +72,7 @@ namespace LnWarn.Cmd
                 Console.ForegroundColor = ConsoleColor.Red;
                 await Console.Error.WriteLineAsync();
                 DrawHorizontalLine();
-                await Console.Error.WriteLineAsync($"Lines with minimum length {MinLineLength} exceeded the maximum number of allowed lines {MaxLines} in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
+                await Console.Error.WriteLineAsync($"Count of lines with minimum length of {MinLineLength} exceeded the maximum number of allowed lines {MaxLines} per file in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
                 DrawHorizontalLine();
                 await Console.Error.WriteLineAsync($"{"Path",-50}{"Lines",-10}");
                 foreach (var (_, stem, lineCount) in ruleBreakers)
@@ -89,7 +89,7 @@ namespace LnWarn.Cmd
             return 0;
         }
 
-        private void DrawHorizontalLine() => Console.Error.WriteLineAsync(new string('_', 150));
+        private void DrawHorizontalLine() => Console.Error.WriteLineAsync(new string('─', 150));
     }
 
     internal record LineCountResult(string Path, string Stem, uint LineCount)
