@@ -12,7 +12,7 @@ using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
 
 namespace LnWarn.Cmd
 {
-    [Command(Description = "My global command line tool.")]
+    [Command(Description = "Count lines and return non zero when files exceed maximum number of lines.")]
     class Program
     {
         public static int Main(string[] args) => CommandLineApplication.Execute<Program>(args);
