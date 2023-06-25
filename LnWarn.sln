@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnWarn.Tests", "LnWarn.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnWarn", "LnWarn\LnWarn.csproj", "{976B222F-2EB2-4B8A-9127-483A106C6101}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LnWarn.Cmd", "LnWarn.Cmd\LnWarn.Cmd.csproj", "{0E201BC2-28B6-4CB3-A502-331033DC9547}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{976B222F-2EB2-4B8A-9127-483A106C6101}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{976B222F-2EB2-4B8A-9127-483A106C6101}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{976B222F-2EB2-4B8A-9127-483A106C6101}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E201BC2-28B6-4CB3-A502-331033DC9547}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E201BC2-28B6-4CB3-A502-331033DC9547}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E201BC2-28B6-4CB3-A502-331033DC9547}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E201BC2-28B6-4CB3-A502-331033DC9547}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
