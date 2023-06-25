@@ -68,23 +68,26 @@ class Program
         var ruleBreakers = lineCountResults.Where(c => c.LineCount > MaxLines).ToList();
         if (ruleBreakers.Any())
         {
-            await WriteFailureResult(ruleBreakers);
+            await WriteResult(ruleBreakers);
             return 1;
         }
             
         return 0;
     }
 
-    private async Task WriteFailureResult(List<LineCountResult> ruleBreakers)
+    private async Task WriteResult(List<LineCountResult> ruleBreakers)
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        if (ruleBreakers.Any())
+        {
+            Console.ForegroundColor = ConsoleColor.Red;
+        }
         await Console.Error.WriteLineAsync();
         DrawHorizontalLine();
         await Console.Error.WriteLineAsync(
             $"Count of lines with minimum length of {MinLineLength} exceeded the maximum number of allowed lines {MaxLines} per file in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
         DrawHorizontalLine();
         await Console.Error.WriteLineAsync($"{"Path",-50}{"Lines",-10}");
-        foreach (var (_, stem, lineCount) in ruleBreakers)
+        foreach (var (_, stem, lineCount) in ruleBreakers.OrderByDescending(d=>d.LineCount))
         {
             await Console.Error.WriteLineAsync($"{stem,-50}{lineCount,-10}");
         }
