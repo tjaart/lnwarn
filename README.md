@@ -5,7 +5,8 @@
 
 A dotnet tool to count lines and return an error when there are too many.
 
-
+### Installation
+`dotnet tool install --global LnWarn.Cmd --version 1.0.0`
 
 ```
 lnwarn --help
