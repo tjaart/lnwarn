@@ -1,4 +1,8 @@
 # lnwarn
+
+
+[![.NET](https://github.com/tjaart/lnwarn/actions/workflows/dotnet.yml/badge.svg?event=push)](https://github.com/tjaart/lnwarn/actions/workflows/dotnet.yml)
+
 A dotnet tool to count lines and return an error when there are too many.
 
 
@@ -18,4 +22,6 @@ Options:
   -?|-h|--help           Show help information
 
 ```
+
+
 
