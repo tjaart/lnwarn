@@ -4,6 +4,7 @@
         <ToolCommandName>lnwarn</ToolCommandName>
         <PackAsTool>True</PackAsTool>
         <OutputType>Exe</OutputType>
+        <Nullable>enable</Nullable>
         <TargetFramework>net7.0</TargetFramework>
         <PackageOutputPath>./nupkg</PackageOutputPath>
     </PropertyGroup>
