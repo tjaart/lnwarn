@@ -7,6 +7,12 @@
         <Nullable>enable</Nullable>
         <TargetFramework>net7.0</TargetFramework>
         <PackageOutputPath>./nupkg</PackageOutputPath>
+
+        <PackageId>LnWarn</PackageId>
+        <Version>1.0.0</Version>
+        <Authors>Tjaart Blignaut</Authors>
+        <PackageDescription>A tool to fail builds when source files exceed a number of lines</PackageDescription>
+        <RepositoryUrl>https://github.com/tjaart/lnwarn</RepositoryUrl>
     </PropertyGroup>
 
     <ItemGroup>
