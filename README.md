@@ -2,7 +2,7 @@
 
 
 [![.NET](https://github.com/tjaart/lnwarn/actions/workflows/dotnet.yml/badge.svg?event=push)](https://github.com/tjaart/lnwarn/actions/workflows/dotnet.yml)
-![Nuget](https://img.shields.io/nuget/dt/:LnWarn.Cmd)
+![Nuget](https://img.shields.io/nuget/dt/LnWarn.Cmd)
 
 A dotnet tool to count lines and return an error when there are too many.
 
