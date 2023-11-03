@@ -12,7 +12,7 @@ public static class NullableExtensions
             return true;
         }
 
-        result = default;
+        result = default!;
         return false;
     }
 }
