@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using McMaster.Extensions.CommandLineUtils;
 using Microsoft.Extensions.FileSystemGlobbing;
 using Microsoft.Extensions.FileSystemGlobbing.Abstractions;
+using Spectre.Console;
 
 namespace LnWarn.Cmd;
 
@@ -98,27 +99,24 @@ class Program
 
     private async Task WriteResult(List<LineCountResult> ruleBreakers, List<LineCountResult> allLines)
     {
-        
+        var table = new Table();
+        table.AddColumn("File");
+        table.AddColumn("Line Count");
         await Console.Error.WriteLineAsync();
         DrawHorizontalLine();
         await Console.Error.WriteLineAsync(
             $"Count of lines with minimum length of {MinLineLength} exceeded the maximum number of allowed lines of {MaxLines} lines per file in the following {ruleBreakers.Count} file{(ruleBreakers.Count > 1 ? "s" : "")}");
         DrawHorizontalLine();
-        await Console.Error.WriteLineAsync($"{"Path",-50}{"Lines",-10}");
         if (ShowAll)
         {
             foreach (var (line, stem, lineCount) in allLines.OrderByDescending(d=>d.LineCount))
             {
-                if (ruleBreakers.Any(c=>c.Stem == stem))
-                {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                }
-                else
-                {
-                    Console.ForegroundColor = ConsoleColor.Green;
-                }
-                await Console.Error.WriteLineAsync($"{stem,-50}{lineCount,-10}");
-                Console.ResetColor();
+                var color = ruleBreakers.Any(c => c.Stem == stem) ? "red" : "green"; 
+                
+                table.AddRow(stem, $"[{color}]{lineCount}[/]" );
+                //await Console.Error.WriteLineAlsync($"{stem,-50}{lineCount,-10}");
+               
+                //Console.ResetColor();//
             }
         }
         else
@@ -129,12 +127,14 @@ class Program
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
-                await Console.Error.WriteLineAsync($"{stem,-50}{lineCount,-10}");
+                table.AddRow(stem, $"[red]{lineCount.ToString()}[/]" );
             }
 
         }
+        AnsiConsole.Write(table);
         Console.ResetColor();
         DrawHorizontalLine();
+        AnsiConsole.WriteLine($"total lines: {allLines.Sum(s=>s.LineCount)}");
     }
 
     private void DrawHorizontalLine() => Console.Error.WriteLineAsync(new string('─', 150));
