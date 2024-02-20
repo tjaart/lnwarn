@@ -22,6 +22,10 @@ class Program
     [Range(1, 1000)]
     public int? MinLineLength { get; } = null;
 
+    [Option(Description = "Files that have less lines will not be counted.", Template = "--min-lines|-mlc")]
+    [Range(1, 1000)]
+    public int? MinFileLines { get; } = null;
+
     [Option(Description = "If any file has more than this maximum lines, then exit with a non zero exit code", Template = "--max|-m")]
     public int MaxLines { get; } = 50;
 
@@ -82,6 +86,10 @@ class Program
         {
             await using var stream = File.OpenRead(System.IO.Path.Combine(resolvedPath,matchingFilesFile.Path) );
             var lineCount = await lineCounter.CountLines(stream);
+            if (lineCount < MinFileLines)
+            {
+                continue;
+            }
             lineCountResults.Add(new LineCountResult(matchingFilesFile.Path, matchingFilesFile.Stem ?? "??", lineCount));
         }
             
@@ -134,7 +142,7 @@ class Program
         AnsiConsole.Write(table);
         Console.ResetColor();
         DrawHorizontalLine();
-        AnsiConsole.WriteLine($"total lines: {allLines.Sum(s=>s.LineCount)}");
+        AnsiConsole.WriteLine($"Total Lines Counted: {allLines.Sum(s=> s.LineCount):N1}");
     }
 
     private void DrawHorizontalLine() => Console.Error.WriteLineAsync(new string('─', 150));
